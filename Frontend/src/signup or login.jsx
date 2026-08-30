@@ -103,123 +103,127 @@ export default function SignupOrLogin() {
             mode === "login" ? "panel-cream" : "panel-dark"
           }`}
         >
-          {mode === "login" ? (
-            /* Login Form on Left */
-            <form onSubmit={handleFormSubmit} className="form-panel-content">
-              <div className="form-header">
-                <h2 className="form-title tracking-tight">Sign in</h2>
-              </div>
-
-              <div className="form-fields-container">
-                <div className="auth-input-group">
-                  <label className="auth-label">Username or email</label>
-                  <div className="auth-input-wrapper">
-                    <Mail size={16} className="auth-input-icon" />
-                    <input
-                      type="text"
-                      className="auth-input auth-input-with-icon"
-                      placeholder="name@domain.com"
-                      value={loginEmail}
-                      onChange={(e) => setLoginEmail(e.target.value)}
-                      required
-                      disabled={busy}
-                    />
-                  </div>
+          <div className="panel-content">
+            {mode === "login" ? (
+              /* Login Form on Left */
+              <form onSubmit={handleFormSubmit} className="form-panel-content">
+                <div className="form-header">
+                  <h2 className="form-title tracking-tight">Sign in</h2>
                 </div>
 
-                <div className="auth-input-group">
-                  <label className="auth-label">Password</label>
-                  <div className="auth-input-wrapper">
-                    <Lock size={16} className="auth-input-icon" />
-                    <input
-                      type={showLoginPassword ? "text" : "password"}
-                      className="auth-input auth-input-with-icon auth-input-with-toggle"
-                      placeholder="••••••••"
-                      value={loginPassword}
-                      onChange={(e) => setLoginPassword(e.target.value)}
-                      required
-                      disabled={busy}
-                    />
-                    <button
-                      type="button"
-                      className="auth-password-toggle"
-                      onClick={() => setShowLoginPassword(!showLoginPassword)}
-                      disabled={busy}
+                <div className="form-fields-container">
+                  <div className="auth-input-group">
+                    <label className="auth-label">Username or email</label>
+                    <div className="auth-input-wrapper">
+                      <Mail size={16} className="auth-input-icon" />
+                      <input
+                        type="text"
+                        className="auth-input auth-input-with-icon"
+                        placeholder="name@domain.com"
+                        value={loginEmail}
+                        onChange={(e) => setLoginEmail(e.target.value)}
+                        required
+                        disabled={busy}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="auth-input-group">
+                    <label className="auth-label">Password</label>
+                    <div className="auth-input-wrapper">
+                      <Lock size={16} className="auth-input-icon" />
+                      <input
+                        type={showLoginPassword ? "text" : "password"}
+                        className="auth-input auth-input-with-icon auth-input-with-toggle"
+                        placeholder="••••••••"
+                        value={loginPassword}
+                        onChange={(e) => setLoginPassword(e.target.value)}
+                        required
+                        disabled={busy}
+                      />
+                      <button
+                        type="button"
+                        className="auth-password-toggle"
+                        onClick={() => setShowLoginPassword(!showLoginPassword)}
+                        disabled={busy}
+                      >
+                        {showLoginPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="auth-options-row">
+                    <label className="auth-checkbox-label">
+                      <input
+                        type="checkbox"
+                        className="auth-checkbox"
+                        checked={loginRemember}
+                        onChange={(e) => setLoginRemember(e.target.checked)}
+                        disabled={busy}
+                      />
+                      <span>Keep me signed in</span>
+                    </label>
+                    <a
+                      href="#forgot"
+                      className="auth-link text-xs transition-colors"
+                      onClick={(e) => e.preventDefault()}
                     >
-                      {showLoginPassword ? <EyeOff size={16} /> : <Eye size={16} />}
-                    </button>
+                      Forgot password?
+                    </a>
                   </div>
                 </div>
 
-                <div className="auth-options-row">
-                  <label className="auth-checkbox-label">
-                    <input
-                      type="checkbox"
-                      className="auth-checkbox"
-                      checked={loginRemember}
-                      onChange={(e) => setLoginRemember(e.target.checked)}
-                      disabled={busy}
-                    />
-                    <span>Keep me signed in</span>
-                  </label>
-                  <a
-                    href="#forgot"
-                    className="auth-link text-xs transition-colors"
-                    onClick={(e) => e.preventDefault()}
-                  >
-                    Forgot password?
-                  </a>
-                </div>
-              </div>
-
-              <div className="auth-action-row">
-                <button
-                  type="submit"
-                  className="auth-btn-primary shadow-sm active:scale-98 transition-all duration-150"
-                  disabled={busy}
-                >
-                  Sign in
-                </button>
-                <p className="auth-switch-text">
-                  New here?
+                <div className="auth-action-row">
                   <button
-                    type="button"
-                    className="auth-switch-link"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      triggerTransition("signup");
-                    }}
+                    type="submit"
+                    className="auth-btn-primary shadow-sm active:scale-98 transition-all duration-150"
                     disabled={busy}
                   >
-                    Create account
+                    Sign in
                   </button>
-                </p>
-              </div>
-            </form>
-          ) : (
-            /* Brand Panel on Left (Signup mode) */
-            <div className="brand-panel-content">
-              <div className="brand-logo-section">
-                <Orbit className="brand-logo-icon" size={24} />
-                <span className="brand-logo-text">ORBIT</span>
-              </div>
+                  <p className="auth-switch-text">
+                    New here?
+                    <button
+                      type="button"
+                      className="auth-switch-link"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        triggerTransition("signup");
+                      }}
+                      disabled={busy}
+                    >
+                      Create account
+                    </button>
+                  </p>
+                </div>
+              </form>
+            ) : (
+              /* Brand Panel on Left (Signup mode) */
+              <div className="brand-panel-content">
+                <div className="brand-logo-section">
+                  <Orbit className="brand-logo-icon" size={24} />
+                  <span className="brand-logo-text">ORBIT</span>
+                </div>
 
-              <div className="brand-text-section">
-                <h1 className="brand-heading font-serif">
-                  Start the <span className="brand-highlight italic font-light">first</span> page.
-                </h1>
-                <p className="brand-subtext">
-                  One account for every board, every draft, and every solved problem.
-                </p>
+                <div className="brand-text-section">
+                  <h1 className="brand-heading font-serif">
+                    Start the <span className="brand-highlight italic font-light">first</span> page.
+                  </h1>
+                  <p className="brand-subtext">
+                    One account for every board, every draft, and every solved problem.
+                  </p>
+                </div>
               </div>
+            )}
+          </div>
 
-              {/* Gentle floating dots */}
-              <div className="floating-dots">
-                <div className="dot dot-1" />
-                <div className="dot dot-2" />
-                <div className="dot dot-3" />
-                <div className="dot dot-4" />
-              </div>
+          {/* Gentle floating dots outside safe zone so they can cover full background */}
+          {mode === "signup" && (
+            <div className="floating-dots">
+              <div className="dot dot-1" />
+              <div className="dot dot-2" />
+              <div className="dot dot-3" />
+              <div className="dot dot-4" />
             </div>
           )}
         </div>
@@ -230,121 +234,125 @@ export default function SignupOrLogin() {
             mode === "login" ? "panel-dark" : "panel-cream"
           }`}
         >
-          {mode === "login" ? (
-            /* Brand Panel on Right (Login mode) */
-            <div className="brand-panel-content">
-              <div className="brand-logo-section">
-                <Orbit className="brand-logo-icon" size={24} />
-                <span className="brand-logo-text">ORBIT</span>
-              </div>
+          <div className="panel-content">
+            {mode === "login" ? (
+              /* Brand Panel on Right (Login mode) */
+              <div className="brand-panel-content">
+                <div className="brand-logo-section">
+                  <Orbit className="brand-logo-icon" size={24} />
+                  <span className="brand-logo-text">ORBIT</span>
+                </div>
 
-              <div className="brand-text-section">
-                <h1 className="brand-heading font-serif">
-                  Welcome <span className="brand-highlight italic font-light">back</span>.
-                </h1>
-                <p className="brand-subtext">
-                  Your brands, your drafts, and your projects all exactly where you left them.
-                </p>
+                <div className="brand-text-section">
+                  <h1 className="brand-heading font-serif">
+                    Welcome <span className="brand-highlight italic font-light">back</span>.
+                  </h1>
+                  <p className="brand-subtext">
+                    Your brands, your drafts, and your projects all exactly where you left them.
+                  </p>
+                </div>
               </div>
+            ) : (
+              /* Signup Form on Right */
+              <form onSubmit={handleFormSubmit} className="form-panel-content">
+                <div className="form-header">
+                  <h2 className="form-title tracking-tight">Create account</h2>
+                </div>
 
-              {/* Gentle floating dots */}
-              <div className="floating-dots">
-                <div className="dot dot-1" />
-                <div className="dot dot-2" />
-                <div className="dot dot-3" />
-                <div className="dot dot-4" />
-              </div>
-            </div>
-          ) : (
-            /* Signup Form on Right */
-            <form onSubmit={handleFormSubmit} className="form-panel-content">
-              <div className="form-header">
-                <h2 className="form-title tracking-tight">Create account</h2>
-              </div>
+                <div className="form-fields-container">
+                  <div className="auth-input-group">
+                    <label className="auth-label">Full name</label>
+                    <div className="auth-input-wrapper">
+                      <User size={16} className="auth-input-icon" />
+                      <input
+                        type="text"
+                        className="auth-input auth-input-with-icon"
+                        placeholder="Jane Doe"
+                        value={signupName}
+                        onChange={(e) => setSignupName(e.target.value)}
+                        required
+                        disabled={busy}
+                      />
+                    </div>
+                  </div>
 
-              <div className="form-fields-container">
-                <div className="auth-input-group">
-                  <label className="auth-label">Full name</label>
-                  <div className="auth-input-wrapper">
-                    <User size={16} className="auth-input-icon" />
-                    <input
-                      type="text"
-                      className="auth-input auth-input-with-icon"
-                      placeholder="Jane Doe"
-                      value={signupName}
-                      onChange={(e) => setSignupName(e.target.value)}
-                      required
-                      disabled={busy}
-                    />
+                  <div className="auth-input-group">
+                    <label className="auth-label">Email Address</label>
+                    <div className="auth-input-wrapper">
+                      <Mail size={16} className="auth-input-icon" />
+                      <input
+                        type="email"
+                        className="auth-input auth-input-with-icon"
+                        placeholder="name@domain.com"
+                        value={signupEmail}
+                        onChange={(e) => setSignupEmail(e.target.value)}
+                        required
+                        disabled={busy}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="auth-input-group">
+                    <label className="auth-label">Password</label>
+                    <div className="auth-input-wrapper">
+                      <Lock size={16} className="auth-input-icon" />
+                      <input
+                        type={showSignupPassword ? "text" : "password"}
+                        className="auth-input auth-input-with-icon auth-input-with-toggle"
+                        placeholder="••••••••"
+                        value={signupPassword}
+                        onChange={(e) => setSignupPassword(e.target.value)}
+                        required
+                        disabled={busy}
+                      />
+                      <button
+                        type="button"
+                        className="auth-password-toggle"
+                        onClick={() => setShowSignupPassword(!showSignupPassword)}
+                        disabled={busy}
+                      >
+                        {showSignupPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                      </button>
+                    </div>
+                    <span className="auth-input-hint">Use 8 characters or more.</span>
                   </div>
                 </div>
 
-                <div className="auth-input-group">
-                  <label className="auth-label">Email Address</label>
-                  <div className="auth-input-wrapper">
-                    <Mail size={16} className="auth-input-icon" />
-                    <input
-                      type="email"
-                      className="auth-input auth-input-with-icon"
-                      placeholder="name@domain.com"
-                      value={signupEmail}
-                      onChange={(e) => setSignupEmail(e.target.value)}
-                      required
-                      disabled={busy}
-                    />
-                  </div>
-                </div>
-
-                <div className="auth-input-group">
-                  <label className="auth-label">Password</label>
-                  <div className="auth-input-wrapper">
-                    <Lock size={16} className="auth-input-icon" />
-                    <input
-                      type={showSignupPassword ? "text" : "password"}
-                      className="auth-input auth-input-with-icon auth-input-with-toggle"
-                      placeholder="••••••••"
-                      value={signupPassword}
-                      onChange={(e) => setSignupPassword(e.target.value)}
-                      required
-                      disabled={busy}
-                    />
-                    <button
-                      type="button"
-                      className="auth-password-toggle"
-                      onClick={() => setShowSignupPassword(!showSignupPassword)}
-                      disabled={busy}
-                    >
-                      {showSignupPassword ? <EyeOff size={16} /> : <Eye size={16} />}
-                    </button>
-                  </div>
-                  <span className="auth-input-hint">Use 8 characters or more.</span>
-                </div>
-              </div>
-
-              <div className="auth-action-row">
-                <button
-                  type="submit"
-                  className="auth-btn-primary shadow-sm active:scale-98 transition-all duration-150"
-                  disabled={busy}
-                >
-                  Create account
-                </button>
-                <p className="auth-switch-text">
-                  Already have an account?
+                <div className="auth-action-row">
                   <button
-                    type="button"
-                    className="auth-switch-link"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      triggerTransition("login");
-                    }}
+                    type="submit"
+                    className="auth-btn-primary shadow-sm active:scale-98 transition-all duration-150"
                     disabled={busy}
                   >
-                    Sign in
+                    Create account
                   </button>
-                </p>
-              </div>
-            </form>
+                  <p className="auth-switch-text">
+                    Already have an account?
+                    <button
+                      type="button"
+                      className="auth-switch-link"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        triggerTransition("login");
+                      }}
+                      disabled={busy}
+                    >
+                      Sign in
+                    </button>
+                  </p>
+                </div>
+              </form>
+            )}
+          </div>
+
+          {/* Gentle floating dots outside safe zone so they can cover full background */}
+          {mode === "login" && (
+            <div className="floating-dots">
+              <div className="dot dot-1" />
+              <div className="dot dot-2" />
+              <div className="dot dot-3" />
+              <div className="dot dot-4" />
+            </div>
           )}
         </div>
 

@@ -43,19 +43,33 @@
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 }
 
 .panel-left {
   clip-path: polygon(0 0, 58% 0, 42% 100%, 0 100%);
-  padding: 3rem 6rem 3rem 3.5rem; /* Extra right padding to clear the angle */
 }
 
 .panel-right {
   clip-path: polygon(58% 0, 100% 0, 100% 100%, 42% 100%);
-  padding: 3rem 3.5rem 3rem 6rem; /* Extra left padding to clear the angle */
+}
+
+/* Constrain content to safe zones inside the diagonal cut */
+.panel-content {
+  width: 43%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 3.5rem 1.5rem;
+}
+
+.panel-left .panel-content {
+  margin-left: 0;
+}
+
+.panel-right .panel-content {
+  margin-left: auto;
 }
 
 /* Panel Background & Text Colors */
@@ -88,8 +102,7 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
-  position: relative;
-  z-index: 10;
+  width: 100%;
 }
 
 .brand-logo-section {
@@ -110,7 +123,6 @@
 }
 
 .brand-text-section {
-  max-width: 290px;
   text-align: left;
 }
 
@@ -137,10 +149,11 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+  width: 100%;
 }
 
 .form-header {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .form-title {
@@ -152,7 +165,7 @@
 .form-fields-container {
   display: flex;
   flex-direction: column;
-  gap: 1.125rem;
+  gap: 1rem;
   flex-grow: 1;
   justify-content: center;
 }
@@ -196,7 +209,6 @@
   box-sizing: border-box;
 }
 
-/* Adjust padding if we have icons in input */
 .auth-input-with-icon {
   padding-left: 2.5rem;
 }
@@ -276,7 +288,7 @@
 
 /* Action button at bottom */
 .auth-action-row {
-  margin-top: 1.5rem;
+  margin-top: 1.25rem;
 }
 
 .auth-btn-primary {
@@ -304,7 +316,7 @@
 /* Switch toggle links */
 .auth-switch-text {
   text-align: center;
-  margin-top: 1.25rem;
+  margin-top: 1rem;
   font-size: 0.85rem;
   color: var(--color-cream-muted);
 }
